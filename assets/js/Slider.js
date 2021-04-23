@@ -1,28 +1,29 @@
 class Slider {
-  constructor(images, currentIndex = 0){
-    if(!Array.isArray(images)){
+  constructor(images, currentIndex = 0) {
+    if (!Array.isArray(images)) {
       throw new TypeError();
     }
     this._images = images;
     this.currentIndex = currentIndex;
   }
 
-  get images(){
+  get images() {
     return this._images;
   }
 
-  get currentIndex(){
+  get currentIndex() {
     return this._currentIndex;
   }
 
-  set currentIndex(v){
-    if(typeof v !== 'number'){
+  set currentIndex(v) {
+    if (typeof v !== "number") {
       throw new TypeError();
     }
-    if(v > this._images.length - 1){
+    if (v >= 0 && v <= this._images.length) {
+      this._currentIndex = v;
+    } else {
       this._currentIndex = 0;
     }
-    this._currentIndex = v;
   }
 
   get currentSlide() {
@@ -35,7 +36,8 @@ class Slider {
   }
 
   prev() {
-    this.currentIndex = (this.currentIndex - 1 + this._images.length) % this._images.length;
+    this.currentIndex =
+      (this.currentIndex - 1 + this._images.length) % this._images.length;
     return this.currentSlide;
   }
 }
