@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  flex-flow: column nowrap;
+  background: url("https://i.pinimg.com/originals/4a/94/26/4a94268541d7a0ed95a8be5138e8a288.jpg") center center/cover no-repeat;
+  font-size: 25px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.wrapper {
+  background:linear-gradient(90deg, #48c6ef 0%,#6f86d6 100% );
+  padding: 25px;
+  border-radius: 5px;
+}
+
+.phone-btn {
+  padding: 5px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.phone-btn:hover {
+  background-color: rgb(199, 196, 196);
+}

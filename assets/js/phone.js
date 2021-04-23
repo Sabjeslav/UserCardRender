@@ -6,23 +6,6 @@ const less = document.querySelector("#less");
 const buttons = document.querySelector("#buttons");
 
 function binarySearch(arr, value) {
-  // let mid = Math.floor(array.length / 2);
-  // let start = 0;
-  // let end = array.length - 1;
-  // while (start < end) {
-  //   debugger;
-  //   if (item === array[mid]) return mid;
-  //   if (mid === start) return -1;
-  //   if (item > array[mid]) {
-  //     start = mid;
-  //     mid = Math.floor((end + start) / 2);
-  //   }
-  //   if (item < array[mid]) {
-  //     end = mid;
-  //     mid = Math.floor((end + start) / 2);
-  //   }
-  // }
-  // return -1;
   let start = 0;
   let end = arr.length - 1;
 
@@ -73,21 +56,3 @@ function numGuesser(startValue = 0, endValue = 999999999) {
   let middle = Math.floor((start + end) / 2);
   phone.textContent = middle;
 }
-
-/*function numGuesser(startValue = 0, endValue = 999999999) {
-  let start = startValue;
-  let end = endValue;
-  while(true) {
-    let middle = Math.round((start + end) / 2);
-    if(confirm(`Ваше число ${middle}?`)) {
-      return middle;
-    }
-    if (confirm(`Ваше число больше чем ${middle}?`)){
-      start = middle;
-      middle = Math.ceil((start + end) / 2);
-    } else {
-      end = middle;
-      middle = Math.floor((start + end) / 2);
-    }
-  }
-} */
