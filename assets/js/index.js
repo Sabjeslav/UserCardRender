@@ -13,6 +13,13 @@ const [prevButton, nextButton] = document.querySelectorAll(
   ".slider-container > button"
 );
 
+const strAttr = document.createAttribute("src");
+slideImage.setAttributeNode(strAttr);
+
+const updateView = (imgLink) => {
+  strAttr.value = imgLink;
+};
+
 updateView(slider.currentSlide);
 
 const createButtonHandler = (action = "next") => () => {
@@ -22,9 +29,20 @@ const createButtonHandler = (action = "next") => () => {
 prevButton.addEventListener("click", createButtonHandler("prev"));
 nextButton.addEventListener("click", createButtonHandler("next"));
 
-function updateView(imgLink) {
-  container.setAttribute(
-    "style",
-    `background-image: url("${imgLink}"); background-size: cover; `
-  );
-}
+const [btn1, btn2] = document.querySelectorAll('.buttons');
+
+const btnHandler = () => {
+  [btn1.innerText, btn2.innerText] = [btn2.innerText, btn1.innerText];
+};
+
+btn1.addEventListener("mouseenter", btnHandler);
+btn2.addEventListener("mouseenter", btnHandler);
+
+// btn2.addEventListener('mouseover', ()=>{
+
+// })
+// btn1.addEventListener('mouseover', ()=>{
+//   let temp = btn2.textContent;
+//   btn2.textContent = btn1.textContent;
+//   btn1.textContent = temp;
+// })

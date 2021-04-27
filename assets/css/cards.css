@@ -1,0 +1,62 @@
+@import "./reset.css";
+:root {
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.cardWrapper {
+  border: 3px solid black;
+  border-radius: 5px;
+  margin: 20px;
+}
+
+.cardContainer {
+  width: 320px;
+}
+
+.cardImageWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  position: relative;
+  width: inherit;
+  height: 320px;
+}
+
+.cardImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: inherit;
+  width: inherit;
+  object-fit: cover;
+  object-position: center;
+}
+
+.initials {
+  font-size: 2rem;
+  align-self: center;
+  color: #fff;
+}
+
+.contentWrapper {
+  padding: 0 10px 10px;
+}
+
+.cardName {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
