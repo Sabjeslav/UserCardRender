@@ -1,9 +1,9 @@
 "use strict";
 
 const form = document.getElementById("rootForm");
+const list = document.getElementById("inputList");
 
 let results = [];
-const list = document.getElementById("inputList");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -13,26 +13,29 @@ form.addEventListener("submit", (e) => {
       elements: { email },
     },
   } = e;
-  const deleteBtn = document.createElement("button");
-  deleteBtn.innerText = "Delete";
-  deleteBtn.addEventListener("click", ({ target }) => {
-    const item = target.parentNode.childNodes[0].data;
-    results = results.filter((elem) => elem !== item);
-    target.parentNode.parentNode.removeChild(target.parentNode);
-  });
 
-  if (results.includes(email.value)) {
-    target.reset();
-    return;
-  }
-
-  if (email.value) {
+  if (email.value.trim() && !results.includes(email.value)) {
     results.push(email.value);
-    const listItem = document.createElement("li");
-    listItem.innerText = email.value;
-    listItem.append(deleteBtn);
-    list.append(listItem);
+    list.append(createListElementWithBtn(email.value));
   }
   target.reset();
   console.log(results);
 });
+
+function createDeleteBtn() {
+  const deleteBtn = document.createElement("button");
+  deleteBtn.innerText = "Delete";
+  deleteBtn.addEventListener("click", ({ target }) => {
+    const item = target.parentNode.childNodes[0].data;
+    results.splice(results.indexOf(item), 1);
+    target.parentNode.remove();
+  });
+  return deleteBtn;
+}
+
+function createListElementWithBtn(listElementText) {
+  const listItem = document.createElement("li");
+  listItem.innerText = listElementText;
+  listItem.append(createDeleteBtn()); //adding delete button
+  return listItem;
+}
