@@ -8,6 +8,10 @@
   box-sizing: border-box;
 }
 
+section > h2 {
+  text-align: center;
+}
+
 .cardsContainer {
   display: flex;
   flex-flow: row wrap;
@@ -22,11 +26,15 @@
 
 .cardContainer {
   width: 320px;
+  padding-bottom: 10px;
 }
 
 .cardImageWrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: white;
   background-color: black;
   position: relative;
   width: inherit;
@@ -53,6 +61,7 @@
 
 .contentWrapper {
   padding: 0 10px 10px;
+  text-align: center;
 }
 
 .cardName {
@@ -60,3 +69,35 @@
   margin: 10px 0;
 }
 
+.cardName:empty::after {
+  content: "undefined";
+}
+
+.socialWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.socialIconContainer {
+  border: 1px solid #e8ecee;
+  color: #c6cacc;
+  display: block;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 5px;
+  text-align: center;
+  width: 40px;
+  transition: 0.3s;
+}
+
+.socialIconContainer a {
+  color: inherit;
+}
+
+.socialIconContainer:hover {
+  background-color: #e84545;
+  border-color: #e84545;
+  color: #fff;
+}
