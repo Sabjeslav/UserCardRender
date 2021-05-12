@@ -1,12 +1,17 @@
 "use strict";
 
-const url = new URL("https://www.instagram.com/therock/?hl=ru");
-//console.log(url.hostname);
-
 const root = document.getElementById("root");
-const cardList = responseData.map((place) => createCards(place));
-
-root.append(...cardList);
+let responseData = [];
+fetch("./assets/js/data.json")
+  .then((response) => response.json())
+  .then((data) => {
+    responseData.push(...data);
+    const cardList = responseData.map((place) => createCards(place));
+    root.append(...cardList);
+  })
+  .catch((e) => {
+    console.log(e);
+  });
 
 function createCards(place) {
   return createElement(
@@ -17,7 +22,7 @@ function createCards(place) {
       { classNames: ["cardContainer"] },
       createImageWrapper(place),
       createNameWrapper(place),
-      createSocialWrapper(place)
+      // createSocialWrapper(place)
     )
   );
 }
