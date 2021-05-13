@@ -1,16 +1,14 @@
 "use strict";
 
 const root = document.getElementById("root");
-let responseData = [];
 fetch("./assets/js/data.json")
   .then((response) => response.json())
   .then((data) => {
-    responseData.push(...data);
-    const cardList = responseData.map((place) => createCards(place));
+    const cardList = data.map((place) => createCards(place));
     root.append(...cardList);
   })
   .catch((e) => {
-    console.log(e);
+    console.error(e);
   });
 
 function createCards(place) {
@@ -21,7 +19,7 @@ function createCards(place) {
       "article",
       { classNames: ["cardContainer"] },
       createImageWrapper(place),
-      createNameWrapper(place),
+      createNameWrapper(place)
       // createSocialWrapper(place)
     )
   );
@@ -31,11 +29,12 @@ function createImageWrapper({ firstName, profilePicture }) {
   const img = createElement("img", {
     classNames: ["cardImage"],
     attributes: { src: profilePicture, hidden: true },
-    handlers: {
-      error: handleImageError,
-      load: handleImageLoad,
-    },
   });
+  imgLoadHandler(img)
+    .then(() => {
+      img.hidden = false;
+    })
+    .catch(() => img.remove());
   const imgContainer = createElement(
     "div",
     {
@@ -46,6 +45,13 @@ function createImageWrapper({ firstName, profilePicture }) {
   );
   imgContainer.style.backgroundColor = stringToColor(firstName || "");
   return imgContainer;
+}
+
+function imgLoadHandler(img) {
+  return new Promise((resolve, reject) => {
+    img.addEventListener("load", () => resolve());
+    img.addEventListener("error", () => reject());
+  });
 }
 
 function createNameWrapper({ firstName, lastName }) {
